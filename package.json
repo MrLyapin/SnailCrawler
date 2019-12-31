@@ -1,0 +1,26 @@
+{
+  "name": "SnailCrawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/wdio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^5.18.0",
+    "chai": "^4.2.0",
+    "colors": "^1.4.0",
+    "dateformat": "^3.0.3"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^5.18.0",
+    "@wdio/mocha-framework": "^5.16.15",
+    "@wdio/spec-reporter": "^5.16.11",
+    "@wdio/sync": "^5.17.0",
+    "chromedriver": "^79.0.0",
+    "wdio-chromedriver-service": "^5.0.2"
+  }
+}
