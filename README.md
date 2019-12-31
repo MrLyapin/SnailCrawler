@@ -1,5 +1,9 @@
 # SnailCrawler
 #
+#### init
+terminal > npm install
 
-#### terminal > npm run test
+#
+#### start
+terminal > npm run test
 #
