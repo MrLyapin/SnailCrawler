@@ -13,10 +13,8 @@ const links = "#DataGrid1  tbody  tr  td  a[target]";
 // const links = "div.r > a";
 
 
-
 let currentURL = startURL;
 let stopURL = 'http://stop/';
-let previousURL;
 let text;
 let timer;
 
@@ -25,10 +23,8 @@ let arrLinks = [];
 let uniqLinks = new Set();
 let uniqLinksSize;
 let done = false;
-
-//stat
-let qq = false;
 let parseOk = 0;
+
 
 
 
@@ -69,8 +65,9 @@ describe(startURL + ' page', () => {
             if (uniqLinksSize === uniqLinks.size && done === true) {
 
                 parseOk++;
-                console.log(colors.blue(currentURL));
+                console.log(colors.blue(currentURL), "\x07");
                 console.log(colors.green("#" + parseOk + " page parsed. Unique links:") + uniqLinksSize + "   time to parse:".green + timer + "ms", "next page:" + (parseOk + 1));
+            
                 done = false;
 
             };
@@ -87,7 +84,7 @@ describe(startURL + ' page', () => {
 
             if (err) throw err;
             console.log(colors.red('Report: '), colors.green('links saved!'));
-            console.log("CONGRATULATIONS !!!".rainbow);
+            console.log("CONGRATULATIONS !!!".rainbow, "\x07");
         });
 
     });
