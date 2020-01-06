@@ -3,14 +3,11 @@ const fs = require('fs');
 const colors = require('colors');
 const dateformat = require('dateformat');
 
-const startURL = "http://www.tcsae.org/nygcxben/ch/reader/key_query.aspx";
-const links = "#DataGrid1  tbody  tr  td  a[target]";
+const player = require('node-wav-player');
 
-// const startURL = "https://read.dukeupress.edu/cssaame/search-results?page=1&q=&fl_SiteID=1000023";
-// const links = "div.sri-title.customLink.al-title > h4 > a";
 
-// const startURL = "https://www.google.com";
-// const links = "div.r > a";
+const startURL = "https://www.google.com";
+const links = "div.r > a";
 
 
 let currentURL = startURL;
@@ -65,10 +62,20 @@ describe(startURL + ' page', () => {
             if (uniqLinksSize === uniqLinks.size && done === true) {
 
                 parseOk++;
-                console.log(colors.blue(currentURL), "\x07");
+
+                console.log(colors.blue(currentURL));
                 console.log(colors.green("#" + parseOk + " page parsed. Unique links:") + uniqLinksSize + "   time to parse:".green + timer + "ms", "next page:" + (parseOk + 1));
             
                 done = false;
+
+
+                player.play({
+                    path: './sound/scan_done.wav',
+                  }).then(() => {  
+                  }).catch((error) => {
+                    console.error(error);
+                  });
+
 
             };
 
@@ -84,7 +91,14 @@ describe(startURL + ' page', () => {
 
             if (err) throw err;
             console.log(colors.red('Report: '), colors.green('links saved!'));
-            console.log("CONGRATULATIONS !!!".rainbow, "\x07");
+            console.log("CONGRATULATIONS !!!".rainbow);
+            player.play({
+                path: './sound/scan_stop.wav',
+              }).then(() => {  
+              }).catch((error) => {
+                console.error(error);
+              });
+    
         });
 
     });
