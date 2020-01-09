@@ -2,7 +2,6 @@
 const fs = require('fs');
 const colors = require('colors');
 const dateformat = require('dateformat');
-
 const player = require('node-wav-player');
 
 
@@ -24,22 +23,19 @@ let parseOk = 0;
 
 
 
-
 describe(startURL + ' page', () => {
     it('SnailCrawler => done', () => {
 
 
 
 
-
-
-        browser.url(currentURL); // open start page
-        while (currentURL !== stopURL) { // loop
+        browser.url(currentURL);            // open start page
+        while (currentURL !== stopURL) {    // loop
             currentURL = browser.getUrl();
             uniqLinksSize = uniqLinks.size; // start = 0;
 
-            if ($(links).isExisting()) { // check element
-                timer = Date.now(); // set date now
+            if ($(links).isExisting()) {    // check element
+                timer = Date.now();         // set date now
                 findElements = $$(links);
                 for (let i of findElements) {
                     try {
@@ -61,6 +57,14 @@ describe(startURL + ' page', () => {
 
             if (uniqLinksSize === uniqLinks.size && done === true) {
 
+                //create last file
+                arrLinks = [...uniqLinks];
+                text = arrLinks.join("\n");
+                fs.writeFile('./link_list/last.txt', text, (err) => {
+                    if (err) throw err;
+                    //console.log(colors.green('last file created'));
+                });
+
                 parseOk++;
                 console.log(colors.blue(currentURL));
                 console.log(colors.green("#" + parseOk + " page parsed. Unique links:") + uniqLinksSize + "   time to parse:".green + timer + "ms", "next page:" + (parseOk + 1));
@@ -79,7 +83,6 @@ describe(startURL + ' page', () => {
             };
 
         };
-
 
 
         arrLinks = [...uniqLinks];
