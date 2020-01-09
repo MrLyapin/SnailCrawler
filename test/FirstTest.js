@@ -34,8 +34,8 @@ describe(startURL + ' page', () => {
 
 
         browser.url(currentURL); // open start page
-        while (browser.getUrl() !== stopURL) { // loop
-
+        while (currentURL !== stopURL) { // loop
+            currentURL = browser.getUrl();
             uniqLinksSize = uniqLinks.size; // start = 0;
 
             if ($(links).isExisting()) { // check element
@@ -62,7 +62,6 @@ describe(startURL + ' page', () => {
             if (uniqLinksSize === uniqLinks.size && done === true) {
 
                 parseOk++;
-
                 console.log(colors.blue(currentURL));
                 console.log(colors.green("#" + parseOk + " page parsed. Unique links:") + uniqLinksSize + "   time to parse:".green + timer + "ms", "next page:" + (parseOk + 1));
             
